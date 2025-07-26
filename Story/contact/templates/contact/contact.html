@@ -1,0 +1,165 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+{% block extra_head %}
+<style>
+
+  .letter-image {
+    margin: 0 auto 40px;
+    width: 200px;
+    height: 200px;
+    position: relative;
+  }
+
+  .animated-mail {
+    height: 150px;
+    width: 200px;
+    position: absolute;
+    transition: transform 0.4s;
+  }
+
+  .animated-mail:hover {
+    transform: translateY(50px);
+  }
+
+  .body, .top-fold, .back-fold, .left-fold, .letter, .letter-stamp {
+    position: absolute;
+  }
+
+  .body {
+    bottom: 0;
+    border-style: solid;
+    border-width: 0 0 100px 200px;
+    border-color: transparent transparent #444 transparent;
+    z-index: 2;
+  }
+
+  .top-fold {
+    top: 50px;
+    border-style: solid;
+    border-width: 50px 100px 0 100px;
+    border-color: #333 transparent transparent transparent;
+    z-index: 2;
+    transform-origin: top center;
+    transition: transform 0.4s;
+  }
+
+  .animated-mail:hover .top-fold {
+    transform: rotateX(180deg);
+    z-index: 0;
+  }
+
+  .back-fold {
+    bottom: 0;
+    width: 200px;
+    height: 100px;
+    background: #333;
+    z-index: 0;
+  }
+
+  .left-fold {
+    bottom: 0;
+    border-style: solid;
+    border-width: 50px 0 50px 100px;
+    border-color: transparent transparent transparent #555;
+    z-index: 2;
+  }
+
+  .letter {
+    bottom: 0;
+    left: 20px;
+    width: 160px;
+    height: 60px;
+    background: white;
+    z-index: 1;
+    overflow: hidden;
+    transition: height 0.4s;
+  }
+
+  .animated-mail:hover .letter {
+    height: 180px;
+  }
+
+  .letter-border {
+    height: 10px;
+    background: repeating-linear-gradient(-45deg, #999 0, #999 8px, transparent 8px, transparent 18px);
+  }
+
+  .letter-title, .letter-context {
+    height: 10px;
+    margin-left: 5px;
+    margin-top: 10px;
+    background: #999;
+  }
+
+  .letter-title { width: 40%; }
+  .letter-context { width: 20%; }
+
+  .letter-stamp {
+    margin-left: 120px;
+    margin-top: 30px;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    background: #999;
+    opacity: 0.3;
+  }
+
+  .shadow {
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    width: 250px;
+    height: 30px;
+    transform: translateX(-50%);
+    border-radius: 100%;
+    background: radial-gradient(rgba(0, 0, 0, 0.5), transparent);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container py-5 d-flex justify-content-center align-items-center">
+<div class="text-center">
+  <div class="letter-image">
+    <div class="animated-mail">
+      <div class="back-fold"></div>
+      <div class="letter">
+        <div class="letter-border"></div>
+        <div class="letter-title"></div>
+        <div class="letter-context"></div>
+        <div class="letter-stamp"></div>
+      </div>
+      <div class="top-fold"></div>
+      <div class="body"></div>
+      <div class="left-fold"></div>
+    </div>
+    <div class="shadow"></div>
+  </div>
+
+<div class="bg-dark bg-opacity-75 text-white rounded-4 p-5 shadow-lg text-center" style="max-width: 1000px;">
+
+<form method="post" class="row g-4">
+  {% csrf_token %}
+
+  {% for field in form %}
+    <div class="row align-items-center mb-3">
+      <label class="col-md-3 col-form-label text-start text-white">
+        {{ field.label_tag }}
+      </label>
+      <div class="col-md-9">
+        {{ field }}
+      </div>
+    </div>
+  {% endfor %}
+
+  <div class="row">
+    <div class="offset-md-3 col-md-4 d-grid">
+      <button type="submit" class="btn btn-outline-light">Send Message</button>
+    </div>
+  </div>
+</form>         
+ </div>
+</div>
+
+{% endblock %}
