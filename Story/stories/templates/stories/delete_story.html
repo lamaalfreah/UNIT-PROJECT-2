@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+{% block title %}Delete Story{% endblock %}
+
+{% block content %}
+<div class="container py-5 d-flex justify-content-center align-items-center">
+  <div class="bg-dark bg-opacity-75 text-white rounded-4 p-4 shadow-lg" style="max-width: 800px; width: 100%;">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <div class="d-flex align-items-center gap-2 mb-4">
+      <span class="material-symbols-outlined text-danger" style="font-size: 3rem;">warning</span>
+      <h2 class="mb-0 text-danger">Are you sure you want to delete this story?</h2>
+    </div>
+    <p><strong>Title:</strong> {{ story.title }}</p>
+    <p><strong>Topic:</strong> {{ story.topic }}</p>
+    <form method="post">
+      {% csrf_token %}
+      <div class="row mt-3 d-flex justify-content-end">
+        <div class="col-6 col-md-3">
+          <a href="{% url 'stories:story_detail' story.id %}" class="btn btn-outline-light w-100"><span class="material-symbols-outlined align-middle">close</span>
+            Cancel</a>
+        </div>
+        <div class="col-6 col-md-3 mb-2">
+          <button type="submit" class="btn btn-outline-danger w-100">
+            <span class="material-symbols-outlined align-middle">delete</span>
+            Yes, delete</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}
+
+
+
+
