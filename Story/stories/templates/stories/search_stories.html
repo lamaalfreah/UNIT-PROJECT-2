@@ -1,0 +1,30 @@
+{% extends 'main/base.html' %}
+{% block title %}Search Results{% endblock %}
+{% block content %}
+<h2>Search Results for "{{ query }}"</h2>
+<!-- Story Cards -->
+<div class="row">
+  {% for story in results %}
+    <div class="col-md-4 mb-4">
+      <div class="card bg-dark text-white shadow h-100">
+        {% if story.image %}
+          <img src="{{ story.image.url }}" class="card-img-top object-fit-cover" style="height: 250px;" alt="{{ story.title }}">
+        {% endif %}
+        <div class="card-body">
+          <h5 class="card-title">{{ story.title }}</h5>
+          <p class="card-text"><strong>Topic:</strong> {{ story.topic }}</p>
+          <p class="card-text"><strong>Child:</strong> {{ story.child_name }}</p>
+          <p class="card-text"><strong>Category:</strong> {{ story.category }}</p>
+        </div>
+        <div class="card-footer text-end">
+          <a href="{% url 'stories:story_detail' story.id %}" class="btn btn-outline-light btn-sm">Read More</a>
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <div class="col-12 text-center">
+      <p class="text-muted">No stories matched your search.</p>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
