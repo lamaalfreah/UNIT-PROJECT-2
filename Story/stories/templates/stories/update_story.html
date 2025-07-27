@@ -1,0 +1,52 @@
+{% extends 'main/base.html' %}
+{% block title %}Update Story{% endblock %}
+
+{% block content %}
+<div class="container py-5 d-flex justify-content-center align-items-center min-vh-100">
+  <div class="bg-dark bg-opacity-75 text-white rounded-4 p-4 shadow-lg" style="max-width: 1000px; width: 100%;">
+    <h2 class="mb-4 text-center">Update Story</h2>
+
+    <form method="post" enctype="multipart/form-data" class="row g-4">
+      {% csrf_token %}
+
+      <!-- Current Image (if exists) -->
+      {% if form.instance.image %}
+      <div class="text-center">
+        <p>Current Image:</p>
+        <img src="{{ form.instance.image.url }}" alt="Story Image" style="max-width: 200px;" class="rounded mb-3">
+      </div>
+      {% endif %}
+
+      <!-- Render form fields -->
+      <div class="col-12">
+        {{ form.title.label_tag }} {{ form.title }}
+      </div>
+      <div class="col-12">
+        {{ form.child_name.label_tag }} {{ form.child_name }}
+      </div>
+      <div class="col-12">
+        {{ form.topic.label_tag }} {{ form.topic }}
+      </div>
+      <div class="col-12">
+        {{ form.category.label_tag }} {{ form.category }}
+      </div>
+      <div class="col-12">
+        {{ form.content.label_tag }} {{ form.content }}
+      </div>
+      <div class="col-12">
+        {{ form.image.label_tag }} {{ form.image }}
+      </div>
+    </form>
+
+    <!-- Buttons -->
+    <div class="row mt-3 d-flex justify-content-end">
+      <div class="col-6 col-md-3 mb-2">
+        <button type="submit" class="btn btn-outline-light w-100">Update</button>
+      </div>
+      <div class="col-6 col-md-3">
+        <a href="{% url 'stories:all_stories' %}" class="btn btn-outline-danger w-100">Cancel</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
