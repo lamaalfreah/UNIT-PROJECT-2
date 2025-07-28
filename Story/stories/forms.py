@@ -10,6 +10,8 @@ class StoryForm(forms.ModelForm):
         super(StoryForm, self).__init__(*args, **kwargs)
         for field in self.fields.values():
             field.widget.attrs['class'] = 'form-control'
+        self.fields['content'].required = False
+        self.fields['image'].required = False
 
 class CommentForm(forms.ModelForm):
     class Meta:
