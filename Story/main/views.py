@@ -2,7 +2,7 @@ from django.shortcuts import render
 from stories.models import Story
 from contact.models import Contact
 
-# Create your views here.
+# View to render the homepage with the latest 3 stories and all user messages
 def home_view(request):
     latest_stories = Story.objects.order_by('-created_at')[:3] 
     messages = Contact.objects.order_by('-created_at')
@@ -11,5 +11,6 @@ def home_view(request):
         'messages': messages
     })
 
+# View to render the About Us page
 def about_view(request):
     return render(request, 'main/about.html')
