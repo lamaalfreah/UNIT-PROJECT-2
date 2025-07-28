@@ -9,9 +9,9 @@ import asyncio
 from django.http import HttpResponse,HttpRequest
 import re
 
+# View to list all stories with optional filtering by topic and category
 def all_stories_view(request:HttpRequest):
     stories = Story.objects.all()
-
     topic = request.GET.get('topic')
     category = request.GET.get('category')
 
@@ -23,24 +23,24 @@ def all_stories_view(request:HttpRequest):
     stories = stories.order_by('-created_at')
     return render(request, 'stories/all_stories.html', {'stories': stories})
 
+# View to add a new story, optionally generate content using AI (Cohere)
 def add_story_view(request:HttpRequest):
     form = StoryForm(request.POST or None, request.FILES or None)
 
     if request.method == 'POST':
         if 'generate' in request.POST:
             print("AI GENERATE BUTTON CLICKED")
-  # User clicked Generate with AI
             if form.is_valid():
+                # Extract data from form
                 title = form.cleaned_data['title']
                 child_name = form.cleaned_data['child_name']
                 topic = form.cleaned_data['topic']
                 category = form.cleaned_data['category']
-
+                
+                # Generate story using Cohere
                 co = cohere.Client(settings.COHERE_API_KEY)
                 prompt = f"Write a children's story titled '{title}' for a child named {child_name}, based on the topic '{topic}' and category '{category}'. Make the story as rich and long as possible, using up to the maximum token limit."
-
                 print("PROMPT:", prompt)
-
                 response = co.generate(
                     model='command',
                     prompt=prompt,
@@ -57,9 +57,6 @@ def add_story_view(request:HttpRequest):
                     'category': category,
                     'content': generated_text
                 })
-
-
-
                 return render(request, 'stories/add_story.html', {'form': form})
 
         elif 'submit' in request.POST:  # User clicked Save Story
@@ -69,6 +66,7 @@ def add_story_view(request:HttpRequest):
 
     return render(request, 'stories/add_story.html', {'form': form})
 
+# View to display a specific story with comments and related stories
 def story_detail_view(request:HttpRequest, story_id):
     story = get_object_or_404(Story, id=story_id)
 
@@ -92,6 +90,7 @@ def story_detail_view(request:HttpRequest, story_id):
         'related_stories': related_stories
     })
 
+# View to update an existing story
 def update_story_view(request:HttpRequest, story_id):
     story = get_object_or_404(Story, id=story_id)
     form = StoryForm(request.POST or None, request.FILES or None, instance=story)
@@ -100,6 +99,7 @@ def update_story_view(request:HttpRequest, story_id):
         return redirect('stories:story_detail', story_id=story.id)
     return render(request, 'stories/update_story.html', {'form': form, 'story': story})
 
+# View to delete a story 
 def delete_story_view(request:HttpRequest, story_id):
     story = get_object_or_404(Story, id=story_id)
     if request.method == 'POST':
@@ -107,7 +107,7 @@ def delete_story_view(request:HttpRequest, story_id):
         return redirect('stories:all_stories')
     return render(request, 'stories/delete_story.html', {'story': story})
 
-# Search for stories by name
+# View to search stories by title, topic, or child's name
 def search_stories_view(request:HttpRequest):
     query = request.GET.get('q')
     results = []
@@ -119,9 +119,11 @@ def search_stories_view(request:HttpRequest):
         )
     return render(request, 'stories/search_stories.html', {'results': results, 'query': query})
 
+# Clean text by removing non-ASCII characters
 def clean_text(text):
     return re.sub(r'[^\x00-\x7F]+', ' ', text).strip()
 
+# Convert story content to speech using Edge TTS and stream it as audio
 def story_tts(request:HttpRequest, pk):
     story = Story.objects.get(pk=pk)
     text = story.content
