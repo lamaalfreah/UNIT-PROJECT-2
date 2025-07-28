@@ -36,6 +36,7 @@ def add_story_view(request:HttpRequest):
                 child_name = form.cleaned_data['child_name']
                 topic = form.cleaned_data['topic']
                 category = form.cleaned_data['category']
+                image = request.FILES.get('image') 
                 
                 # Generate story using Cohere
                 co = cohere.Client(settings.COHERE_API_KEY)
@@ -56,7 +57,7 @@ def add_story_view(request:HttpRequest):
                     'topic': topic,
                     'category': category,
                     'content': generated_text
-                })
+                }, files={'image': image} if image else None) 
                 return render(request, 'stories/add_story.html', {'form': form})
 
         elif 'submit' in request.POST:  # User clicked Save Story
