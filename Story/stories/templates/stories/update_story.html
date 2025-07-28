@@ -32,17 +32,17 @@
       <div class="col-12">
         {{ form.image.label_tag }} {{ form.image }}
       </div>
-    </form>
 
-    <!-- Buttons -->
-    <div class="row mt-3 d-flex justify-content-end">
-      <div class="col-6 col-md-3 mb-2">
-        <button type="submit" class="btn btn-outline-light w-100">Update</button>
-      </div>
-      <div class="col-6 col-md-3">
-        <a href="{% url 'stories:all_stories' %}" class="btn btn-outline-danger w-100">Cancel</a>
+      <!-- Buttons -->
+      <div class="row mt-3 d-flex justify-content-end">
+        <div class="col-6 col-md-3 mb-2">
+          <button type="submit" class="btn btn-outline-light w-100">Update</button>
+        </div>
+        <div class="col-6 col-md-3">
+          <a href="{% url 'stories:all_stories' %}" class="btn btn-outline-danger w-100">Cancel</a>
+        </div>
       </div>
     </div>
-  </div>
+    </form>
 </div>
 {% endblock %}
