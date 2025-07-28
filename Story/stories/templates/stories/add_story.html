@@ -3,18 +3,18 @@
 {% block content %}
 <div class="container py-5 d-flex justify-content-center align-items-center min-vh-100" >
     <div class="bg-dark bg-opacity-75 text-white rounded-4 p-4 shadow-lg" style="max-width: 1000px; width: 100%;" >
-      <div class="row mt-3 d-flex justify-content-end">
-        <div class="col-6 col-md-3 mb-2">
-          <button type="submit" name="generate" class="btn btn-outline-info w-100">Generate with AI</button>
-        </div>
-      </div>
         <h2 class="mb-3">{{ title }}</h2>
         <form method="post" enctype="multipart/form-data" action="">
+          <div class="row mt-3 d-flex justify-content-end">
+            <div class="col-6 col-md-3 mb-2">
+              <button type="submit" name="generate" class="btn btn-outline-info w-100">Generate with AI</button>
+            </div>
+          </div>
             {% csrf_token %}
             {{ form.as_p }}
             <div class="row mt-3 d-flex justify-content-end">
               <div class="col-6 col-md-3">
-                <button type="submit" class="btn btn-outline-light w-100">Save</button>
+                <button type="submit" name="submit" class="btn btn-outline-light w-100">Save</button>
               </div>
               <div class="col-6 col-md-3 mb-2">
                 <a href="{% url 'stories:all_stories' %}" class="btn btn-outline-danger w-100">Cancel</a>
