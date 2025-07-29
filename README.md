@@ -1,136 +1,122 @@
-# UNIT-PROJECT-2
+# 🌟 ImagiTales
 
-## Create a Project of your own choosing
+**ImagiTales** is a creative web platform that allows users to generate, explore, and listen to AI-powered children's stories. With support for storytelling, filtering, commenting, and text-to-speech narration, it offers an engaging experience for kids and parents alike.
 
-Base on what you’ve learned until now , create a project of your choosing. Impress us with your creativity and execution.
+---
 
+## ✨ Features
 
-## Minimum Requirements
-- Use Django.
-- Use Templates & Template Inheritance.
-- Use static, media & dynamic urls as needed.
-- Organize your project in apps as needed.
-- Use models to represent you data.
-- Use a CSS library to style your website.
-- Must be responsive (good looking of big screens and small screens).
-- Use naming conventions & best practices.
-- Strive to make the user journey intuitive and complete.
+- ⚡ **Instant Story Generation with AI** for fast and tailored storytelling.
+- 🧒 **Personalized Content** (e.g., child name and topic) to make stories more relatable.
+- 🔍 **Smart Filtering & Search** by topic or category to help users find stories easily.
+- 💬 **Interactive Commenting** to engage users and allow feedback under each story.
+- 🔊 **Text-to-Speech Playback** so children can listen to stories hands-free.
+- 📱 **Fully Responsive Interface** that works beautifully on phones, tablets, and desktops.
+- 🎨 **Modern & Dark-Themed Design** for a visually pleasant and calming reading experience.
+- 🖼️ **Visual Story Previews** with story images for a more immersive browsing experience.
 
-## Use python-dotenv to save your sensitive data.
-- https://pypi.org/project/python-dotenv/
+---
 
+## 👤 User Stories
 
-## Use a CDN or cloud storage provider to sore your large static files (videos, images, etc.), such as:
-- https://firebase.google.com/docs/storage
+<img width="1771" style="width:100%" alt="Wireframe" src="assets/UserStories.png">)
 
-## Use Git & Github to manage and track changes in your project.
-- At lease commit and sync the changes once at the end of everyday.
+---
 
-## Edit the README.md file to include (include the info at the top):
-- Project Name
-- Project Description
-- Features list.
-- User Stories (link or file)
-- UML (link or file)
-- Wireframe (link or file)
+## 🧠 UML Diagram
 
+<img width="1771" style="width:100%" alt="Wireframe" src="assets/uml.png">)
 
-## Example Projects :
+---
 
+## 🖌️ Wireframe
 
-1. **Task Management System:**
-- **Overview:** Create a platform for managing tasks and projects within a team or organization.
-- **Features:**
-- Task creation, assignment, and tracking.
-- Project management with milestones.
-- File uploads and comments on tasks.
-- Notification system for task updates.
+<img width="1771" style="width:100%" alt="Wireframe" src="assets/Wireframe.png">)
 
+---
 
+## 🛠 Tech Stack
 
+- **Framework**: Django
+- **Styling**: Bootstrap 5 + Custom CSS
+- **Database**: SQLite
+- **AI Tools**: Cohere (Text Generation), Edge TTS (Speech Synthesis)
+- **Deployment**: GitHub + Localhost
 
-**Online Learning Platform:**
+---
 
-- **Overview:** Develop a platform for online courses, quizzes, and educational resources.
-- **Features:**
-- Course creation and enrollment.
-- Quiz and assessment functionalities.
-- Progress tracking and certificates.
+## 📂 Project Structure
 
+```plaintext
+Story/
+├── main/
+├── stories/
+├── contact/
+├── static/
+├── media/
+├── templates/
+├── .env
+├── requirements.txt
+├── db.sqlite3
+└── manage.py
+```
 
+---
 
+## 🚀 How to Use ImagiTales
 
-**Crowdfunding Platform:**
+Follow these simple steps to explore and enjoy the ImagiTales platform:
 
-- **Overview:** Build a crowdfunding website where users can create campaigns and seek financial support for their projects.
-- **Features:**
-    -  project history.
-    - Campaign creation and customization.
-    - Payment integration for contributions.
-    - Progress tracking and updates.
+### 🧑 For Visitors (Non-Developers):
+1. **Visit the Homepage:** You'll find the latest featured stories and heartwarming user messages.
+2. **Browse Stories:**
+   - Go to the “All Stories” page to explore all available content.
+   - Use the search bar or filter by topic/category to narrow down your results.
+3. **Read & Listen:**
+   - Click on a story card to read the full story.
+   - Use the built-in audio player to listen to the story via text-to-speech narration.
+4. **Leave a Comment:**
+   - Scroll to the bottom of a story and add your thoughts or feedback.
+5. **Contact Us:**
+   - Navigate to the Contact page and send us a message using the stylish form.
 
-**Job Board and Recruitment System:**
+---
 
-- **Overview:** Develop a platform for job seekers and employers to connect.
-- **Features:**
-    - User profiles with resumes.
-    - Job posting and application functionalities.
-    - Search and filter options for jobs.
-    - Employer dashboards for managing postings.
+### 💻 For Developers (Local Setup):
+1. **Clone the Repository:**
+   ```bash
+   git clone https://github.com/your-username/ImagiTales.git
+   cd ImagiTales
+   ```
 
+2. **Create & Activate Virtual Environment:**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # For Windows: venv\Scripts\activate
+   ```
 
-**Inventory Management System:**
+3. **Install Dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-- **Overview:** Build a system for tracking and managing inventory for businesses.
-- **Features:**
-    - Product catalog with stock levels.
-    - Order processing and tracking.
-    - Reporting and analytics.
+4. **Setup Environment Variables:**
+   - Create a `.env` file in the root directory.
+   - Add your keys (e.g., `COHERE_API_KEY`, `DEBUG=True`).
 
+5. **Apply Migrations:**
+   ```bash
+   python manage.py migrate
+   ```
 
-**Recipe Sharing Platform:**
+6. **Run the Server:**
+   ```bash
+   python manage.py runserver
+   ```
 
-- **Overview:** Create a platform where users can share and discover recipes.
-- **Features:**
-    - saved recipes.
-    - Recipe creation and editing.
-    - Search and categorization of recipes.
-    - User ratings and reviews.
-      
-## Resources:
+7. **Access the Site:**
+   - Visit `http://127.0.0.1:8000` in your browser.
 
-**Free high quality images :**
+---
 
-- https://www.pexels.com/
-- https://unsplash.com
-
-**Free sounds website:**
-
-- https://mixkit.co/
-
-**Free stock videos:**
-
-- https://pixabay.com/videos/
-
-**Free Fonts:**
-
-- https://fonts.google.com
-
-**Free Icons**
-
-- https://fonts.google.com/icons
-- https://icons.getbootstrap.com/
-
-**CSS Library:**
-
-- https://getbootstrap.com/
-- https://get.foundation/index.html
-
-**CSS Animation libraries:**
-
-- https://animate.style
-- https://www.minimamente.com/project/magic/
-
-
-
- 
+> 🚀 *Built with love and imagination to make story time magical!*
