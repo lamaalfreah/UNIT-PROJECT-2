@@ -19,19 +19,19 @@
 
 ## 👤 User Stories
 
-<img width="1771" style="width:100%" alt="Wireframe" src="assets/UserStories.png">)
+<img width="1771" style="width:100%" alt="Wireframe" src="assets/UserStories.png">
 
 ---
 
 ## 🧠 UML Diagram
 
-<img width="1771" style="width:100%" alt="Wireframe" src="assets/uml.png">)
+<img width="1771" style="width:100%" alt="Wireframe" src="assets/uml.png">
 
 ---
 
 ## 🖌️ Wireframe
 
-<img width="1771" style="width:100%" alt="Wireframe" src="assets/Wireframe.png">)
+<img width="1771" style="width:100%" alt="Wireframe" src="assets/Wireframe.png">
 
 ---
 
