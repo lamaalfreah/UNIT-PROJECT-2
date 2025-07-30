@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-n^f3c=dpv95(7--!2-q30kcd%cbihi21*(ib=--tf&ga0-un#k
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+CSRF_TRUSTED_ORIGINS = ["https://imagitales-production-45e4.up.railway.app", "http://127.0.0.1"]
 
 # Application definition
 
